@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 //import { useDispatch, useSelector } from 'react-redux'
-import { loginAction } from '../redux/actions/LoginAction';
-
+import { loginAction } from '../redux/actions/LoginAction'
+import IceCreamDemo from '../components/iceCreamDemo'
 
 
 const CakeDemo = (props) => {
@@ -11,14 +11,13 @@ const CakeDemo = (props) => {
         <div className="container">
             <h1>No of cakes {props.noOfCakes}</h1>
             <button onClick={props.buyCake}>BUY CAKE</button>
-            <h1>No of ice creams {props.noOfCakes}</h1>
-            <button onClick={props.buyCake}>BUY ICECREAM</button>
+            <IceCreamDemo />
         </div>
     )
 }
 const mapStateToProps = state => {
     return {
-        noOfCakes: state.noOfCakes
+        noOfCakes: state.cake.noOfCakes
     }
 }
 const mapDispatchToProps = dispatch => {

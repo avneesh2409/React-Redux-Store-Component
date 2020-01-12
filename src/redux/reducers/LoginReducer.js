@@ -1,4 +1,4 @@
-import { BUY_CAKE } from '../constants'
+import { BUY_CAKE } from '../constants/CakeConstant'
 
 
 const initialState = {
