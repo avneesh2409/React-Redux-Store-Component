@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+//import logo from 'logo.svg';
 import './App.css';
 import CakeDemo from './components/Cakedemo';
 import store from './redux/store';
@@ -13,7 +13,7 @@ class App extends Component {
       <Provider store={store} >
         <div className="App">
           <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
+            <img src="./logo.svg" className="App-logo" alt="logo" />
             <h1 className="App-title">Simple React App</h1>
           </header>
           <CakeDemo />

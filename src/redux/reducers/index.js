@@ -1,3 +1,4 @@
-import LoginReducer from './LoginReducer'
+export * from "./userReducer"
 
-export default LoginReducer;
+
+

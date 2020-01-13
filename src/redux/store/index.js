@@ -5,14 +5,16 @@ import logger from 'redux-logger'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { combineReducers } from 'redux'
 import iceCreamReducer from '../reducers/iceCreamReducer'
-
+import userReducer from '../reducers/userReducer'
+import thunk from 'redux-thunk'
 const rootReducer = combineReducers({
     cake: loginReducer,
-    iceCream: iceCreamReducer
+    iceCream: iceCreamReducer,
+    users: userReducer
 })
 
 const store = createStore(rootReducer,
-    composeWithDevTools(applyMiddleware(logger)));
+    composeWithDevTools(applyMiddleware(logger,thunk)));
 
 export default store;
 
