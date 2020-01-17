@@ -1,23 +1,29 @@
 import React from 'react';
-import { Fetch, CakeDemo, Customers } from '../components';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { LoginForm, Home, Contact } from '../components'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
+const isLoggedIn = (localStorage.isLoggedIn) ? true : false
 
-
-const Router = () => {
+const Routers = () => {
     return (
 
         <Router>
-            <Switch>
-                <Route exact path='/cakedemo' component={CakeDemo} />
-                {/* <Route exact path="/" render={() => (
-              <Redirect to="/fetch" />
-            )} /> */}
-                <Route exact path='/customerlist' component={Customers} />
-                <Route exact path='/fetch' component={Fetch} />
-            </Switch>
+            {(!isLoggedIn) ?
+                <Switch>
+                    <Route exact path='/login' component={LoginForm} />
+                </Switch>
+                :
+                <Switch>
+
+                    <Route exact path='/home' component={Home} />
+                    <Route exact path='/contact' component={Contact} />
+                    <Route exact path="/" render={() => (
+                        <Redirect to="/home" />
+                    )} />
+                </Switch>
+            }
         </Router>
     )
 }
 
-export default Router;
+export default Routers;
