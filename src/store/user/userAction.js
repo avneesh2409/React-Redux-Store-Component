@@ -1,10 +1,12 @@
 import { FETCH_USER_SUCCESS, FETCH_USER_FAILURE, Fetch_USER_REQUEST } from './userTypes'
+import axios from 'axios'
 
-export const fetchUsers = async (url) => {
+export const fetchUsers = (url) => {
     return (dispatch) => {
         dispatch(fetchUserRequest())
-        return await fetch(url).then(response => response.json())
-            .then(res => { dispatch(fetchUserSuccess(resp)) }).catch(error => {
+        axios.get(url)
+            .then(response => { dispatch(fetchUserSuccess(response.data)) })
+            .catch(error => {
                 dispatch(fetchUserFailure(error.message))
             })
     }

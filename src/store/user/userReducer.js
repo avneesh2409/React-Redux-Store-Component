@@ -13,7 +13,7 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 data: action.data,
-                loading: true
+                loading: false
 
             }
         case Fetch_USER_REQUEST:
