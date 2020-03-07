@@ -1,34 +1,40 @@
 import React, { Component } from 'react'
-
-export class Register extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            username: '',
-            password: '',
-            email: '',
-            dob: ''
-        }
-        this.changeHandler = this.changeHandler.bind(this)
-        this.submitHandler = this.submitHandler.bind(this)
-    }
+import { connect } from 'react-redux'
+import { storeDob, storeEmail, storePassword, storeUsername } from '../store/register'
+class Register extends Component {
     changeHandler = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
+        switch (e.target.name) {
+            case "username":
+                this.props.storeUsername(e.target.value); break;
+            case "password":
+                this.props.storePassword(e.target.value); break;
+            case "email":
+                this.props.storeEmail(e.target.value); break;
+            case "dob":
+                this.props.storeDob(e.target.value); break;
+            default:
+
+
+
+
+        }
     }
     submitHandler = () => {
-        console.log(this.state);
-        window.location.href = '/login'
+        console.log(this.props.data);
+        this.props.storeDob('')
+        this.props.storeEmail('')
+        this.props.storePassword('')
+        this.props.storeUsername('')
+
     }
     render() {
         return (
             <div className='jumbotron'>
                 <h5 className='text-center text-primary'>Register here</h5>
-                <p>Username  :-<input type='text' name='username' onChange={this.changeHandler} /></p>
-                <p>password  :-<input type='password' name='password' onChange={this.changeHandler} /></p>
-                <p>DOB       :-<input type='date' name='dob' onChange={this.changeHandler} /></p>
-                <p>email  :-<input type='email' name='email' onChange={this.changeHandler} /></p>
+                <p>Username  :-<input type='text' name='username' value={this.props.data.username} onChange={this.changeHandler} /></p>
+                <p>password  :-<input type='password' name='password' value={this.props.data.password} onChange={this.changeHandler} /></p>
+                <p>age       :-<input type='text' name='dob' value={this.props.data.dob} onChange={this.changeHandler} /></p>
+                <p>email  :-<input type='email' name='email' value={this.props.data.email} onChange={this.changeHandler} /></p>
                 <p><button className='btn btn-primary' onClick={this.submitHandler}>Sign Up</button></p>
             </div>
 
@@ -36,3 +42,19 @@ export class Register extends Component {
         )
     }
 }
+const mapStateToProps = (state) => {
+    return {
+        data: state.register
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        storeDob: (dob) => dispatch(storeDob(dob)),
+        storeEmail: (email) => dispatch(storeEmail(email)),
+        storePassword: (password) => dispatch(storePassword(password)),
+        storeUsername: (username) => dispatch(storeUsername(username))
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register)

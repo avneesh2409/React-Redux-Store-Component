@@ -1,0 +1,4 @@
+export const STORE_EMAIL = "STORE_EMAIL"
+export const STORE_PASSWORD = "STORE_PASSWORD"
+export const STORE_USERNAME = "STORE_USERNAME"
+export const STORE_DOB = "STORE_EMAIL"

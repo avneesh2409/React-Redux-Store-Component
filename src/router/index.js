@@ -1,7 +1,8 @@
 import React from 'react';
-import { LoginForm, Home, Register } from '../components'
-import Contact from '../components/contact'
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { NewGraph } from '../components/newGraph';
+import { LoginForm, Contact, Home, Register, TestApi, Moment } from '../components'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import OneSignal from '../components/oneSignalApi';
 const isLoggedIn = (localStorage.isLoggedIn) ? true : false
 
 const Routers = () => {
@@ -12,15 +13,16 @@ const Routers = () => {
                 <Switch>
                     <Route exact path='/login' component={LoginForm} />
                     <Route exact path='/register' component={Register} />
+
                 </Switch>
                 :
                 <Switch>
-
+                    <Route exact path='/newgraph' component={NewGraph} />
+                    <Route exact path='/onesignal' component={OneSignal} />
+                    <Route exact path='/moment' component={Moment} />
+                    <Route exact path='/testapi' component={TestApi} />
                     <Route exact path='/home' component={Home} />
                     <Route exact path='/contact' component={Contact} />
-                    <Route exact path="/" render={() => (
-                        <Redirect to="/home" />
-                    )} />
                 </Switch>
             }
         </Router>
