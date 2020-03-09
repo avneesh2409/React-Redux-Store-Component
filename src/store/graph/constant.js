@@ -1,0 +1,3 @@
+export const STORE_DURATION = 'STORE_DURATION';
+export const STORE_PLATFORM = 'STORE_PLATFORM';
+//export const STORE_DURATION = 'STORE_DURATION';

@@ -1,17 +1,20 @@
 import React, { Fragment } from 'react';
 import Apidata from '../mockfile/players.json';
 import Graph from './Graph.js';
+import Platform from './platform';
+import Duration from './duration';
 
 var cur = new Date().getTime();
 var str = [];
 var offset = 1000 * 60 * 60;
 var data = []
+var device_type = []
 export default function oneSignal() {
     str = []
     if (Apidata) {
         console.log(Apidata)
         Apidata.players.map(e => {
-            data.push(e.created_at)
+            data.push({ created_at: e.created_at, device_type: e.device_type })
             str.push(new Date(e.created_at * 1000))
         })
     }
@@ -63,9 +66,12 @@ export default function oneSignal() {
 
     return (
         <Fragment>
+            <Duration />
+            <Platform />
             <Graph years={createMonthdata} player={data} />
             <Graph years={createDayData} player={data} />
             <Graph years={createYearData} player={data} />
+
         </Fragment>
     )
 }
