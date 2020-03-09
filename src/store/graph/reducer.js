@@ -1,6 +1,10 @@
 import { STORE_DURATION, STORE_PLATFORM } from './constant';
 
-const initialState = { platform: 'all', duration: 'past_month' };
+const initialState = {
+    platform: 'all',
+    duration: 'past_month'
+};
+
 const platformReducer = (state = initialState, action) => {
     switch (action.type) {
         case STORE_DURATION:
@@ -13,7 +17,7 @@ const platformReducer = (state = initialState, action) => {
                 ...state,
                 platform: action.platform
             }
-        default: state
+        default: return state
     }
 }
 export default platformReducer;

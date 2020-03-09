@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    AreaChart, Area, XAxis, YAxis, Tooltip
+    AreaChart, Area, XAxis, YAxis, Tooltip, Legend
 } from 'recharts';
 
 const calculate = (year, player) => {
@@ -25,12 +25,12 @@ export const Graph = (props) => {
     return (
         <div>
             <AreaChart
-                width={600} height={300} data={data}
-                margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+                width={800} height={100} data={data}>
                 <XAxis dataKey="date" hide={true} />
                 <YAxis dataKey="subscribers" hide={true} />
                 <Tooltip />
                 <Area stroke="#0088FE" type="monotone" dataKey="subscribers" />
+                <Legend layout="vertical" align="left" verticalAlign="middle" />
             </AreaChart>
         </div>
     )
