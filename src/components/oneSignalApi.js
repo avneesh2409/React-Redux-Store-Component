@@ -6,73 +6,50 @@ import Platform from './platform';
 import Duration from './duration';
 
 
+
 export default function oneSignal() {
     const { graph } = useSelector(state => state)
-    let cur = new Date().getTime();
-    // var str = [];
-    let offset = 1000 * 60 * 60;
-    let data = []
-
+    const cur = new Date().getTime();
+    const offset = 1000 * 60 * 60;
+    let data = [];
+    let x = 0;
     if (Apidata) {
-        // console.log(Apidata)
         Apidata.players.map(e => {
             data.push({ created_at: e.created_at, device_type: e.device_type })
-            // str.push(new Date(e.created_at * 1000))
         })
     }
-    // console.log("players data :-", str)
+
     function createMonthdata() {
-        // str = []
-        var month = []
-        let x = 0;
+        let month = []
         for (let i = 0; i < 31 * 24; i++) {
             x = cur - (offset * i)
             month.push(x)
-            // str.push(new Date(x))
         }
-        // console.log(month, str);
         return {
             year: month,
-            // str
         }
     }
     function createYearData() {
-        var year = []
-        // str = []
-        let x = 0
+        let year = []
         for (let i = 0; i < 366 * 24; i++) {
             x = cur - (offset * i)
             year.push(x)
-            // str.push(new Date(x))
         }
-        // console.log(year, str)
         return {
-            year,
-            // str
+            year
         }
     }
-    // var data1 = []
-    // function filterPlayers() {
-    //     for (let index = 0; index < data.length; index++) {
-    //         const e = data[index];
-    //         if (e === graph.platform) {
-    //             data1.push(e)
-    //         }
-    //     }
-    // }
+
     function createDayData() {
         let day = []
-        // str = []
-        let x = 0;
+        console.log("dau data :-",cur)
+        x = cur ;
         for (let i = 0; i < 24; i++) {
-            x = cur * 1000 - (offset * i);
             day.push(x);
-            // str.push(new Date(cur - (offset * i)))
+            x = cur - (offset * i);
         }
-        // console.log(day, str)
         return {
-            year: day,
-            // str
+            year: day
         }
     }
     const onecss = {
@@ -81,25 +58,52 @@ export default function oneSignal() {
         width: '100%',
         top: '50%'
     }
-    let filter = null;
+    let dfilter = null;
     switch (graph.duration) {
         case 'past_month':
-            filter = createMonthdata
+            dfilter = createMonthdata
             break;
         case 'past_year':
-            filter = createYearData
+            dfilter = createYearData
             break;
         case 'past_day':
-            filter = createDayData
+            dfilter = createDayData
             break;
         default:
+    }
+    let pfilter = [];
+    switch(graph.platform)
+    {
+        case '5':
+            for (let index = 0; index < data.length; index++) {
+                if (data[index].device_type === 5) {
+                    pfilter.push({created_at:data[index].created_at,device_type:data[index].device_type})
+                }
+        }
+        break;
+        case '8':
+            for (let index = 0; index < data.length; index++) {
+                if (data[index].device_type === 8) {
+                    pfilter.push({created_at:data[index].created_at,device_type:data[index].device_type})
+                }
+        }
+            break;
+        case '12' :
+            for (let index = 0; index < data.length; index++) {
+                if (data[index].device_type === 12) {
+                    pfilter.push({created_at:data[index].created_at,device_type:data[index].device_type})
+                }
+        }
+            break;
+        default :
+            pfilter = data
     }
     return (
         <Fragment>
             <Duration />
             <Platform />
             <div style={onecss}>
-                <Graph years={filter} player={data} />
+                <Graph years={dfilter} player={pfilter} />
             </div>
         </Fragment>
     )

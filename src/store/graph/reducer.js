@@ -1,7 +1,7 @@
 import { STORE_DURATION, STORE_PLATFORM } from './constant';
 
 const initialState = {
-    platform: 'all',
+    platform: 25,
     duration: 'past_month'
 };
 

@@ -7,7 +7,6 @@ class App extends Component {
 
       <div className="App">
         <header className="App-header">
-          <img src="./logo.svg" className="App-logo" alt="logo" />
           <h1 className="App-title">Simple React App</h1>
           <a href='/login' className='pull-right' >Login</a>
           <a href='/register' className='pull-left'>Register</a>
@@ -15,7 +14,6 @@ class App extends Component {
         </header>
         <Router />
       </div>
-
     );
   }
 }

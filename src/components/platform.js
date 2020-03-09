@@ -13,10 +13,10 @@ export default function platform() {
     return (
         <div style={platformcss}>
             <select name='platform' onChange={(e) => dispatch(storePlatform(e.target.value))}>
-                <option value='all'>All Platform</option>
-                <option value='5'>Google Chrome</option>
-                <option value='8'>Firefox</option>
-                <option value='12'>Edge</option>
+                <option value={25}>All Platform</option>
+                <option value={5}>Google Chrome</option>
+                <option value={8}>Firefox</option>
+                <option value={12}>Edge</option>
             </select>
         </div>
     )
